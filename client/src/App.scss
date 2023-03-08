@@ -173,3 +173,49 @@ input {
 .cancel>p:hover{
   font-size: 0.7rem;
 }
+
+
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  position: fixed;
+  display: flex;
+  border: #FB542B solid 1px;
+  border-radius: 12px;
+  gap: 10px;
+  z-index: 333;
+  bottom: 0%;
+  right: 0%;
+  transform: translate(-50%, -50%);
+}
+
+.alert-suc {
+  padding: 20px;
+  background-color: #04AA6D;
+  color: white;
+  position: fixed;
+  display: flex;
+  border: #FB542B solid 1px;
+  border-radius: 12px;
+  gap: 10px;
+  z-index: 333;
+  bottom: 0%;
+  right: 0%;
+  transform: translate(-50%, -50%);
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}

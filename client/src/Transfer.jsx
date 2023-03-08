@@ -10,8 +10,6 @@ function Transfer({ address, setBalance, verified, setVerified, setShow}) {
   async function transfer(evt) {
     evt.preventDefault();
 
-    setShow(true)
-
     if(verified){
       try {
         const {
@@ -32,8 +30,13 @@ function Transfer({ address, setBalance, verified, setVerified, setShow}) {
     }
   }
 
+  const showPop = () => {
+    setShow(true)
+  }
+
+
   return (
-    <form className="container transfer" onSubmit={transfer}>
+    <form className="container transfer">
       <h1>Send Transaction</h1>
 
       <label>
@@ -55,9 +58,9 @@ function Transfer({ address, setBalance, verified, setVerified, setShow}) {
       </label>
 
     {verified ?  
-     <input type="submit" className="button" value="Transfer" /> 
+     <input onClick={transfer} className="button" value="Transfer" /> 
     : 
-      <input type="submit" className="button-null" value="Transfer" />}
+      <input onClick={showPop} className="button-null" value="Verify" />}
     </form>
   );
 }

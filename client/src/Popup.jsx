@@ -6,10 +6,9 @@ import { useSpring, animated } from "react-spring";
 const Popup = ({publicKey, setVerified, show, setShow}) => {
 
   const [pass, setPass] = useState("")
+  const [error, setError] = useState(false)
+  const [success, setSuccess] = useState(false)
 
-  // const animation = useSpring({
-  //   transform:  "translateY(0)"
-  // });
    
   async function verify() {
    
@@ -20,9 +19,15 @@ const Popup = ({publicKey, setVerified, show, setShow}) => {
     
      if(data){
       setVerified(true)
+      setSuccess(true)
+      setError(false)
+  
      } else {
       alert("Not verified")
       setVerified(false)
+      setError(true)
+      setSuccess(false)
+  
      }
     } 
   }
@@ -43,6 +48,21 @@ const Popup = ({publicKey, setVerified, show, setShow}) => {
                  </label>
          </div>
        )}
+
+        {error && (
+           <div class="alert">
+           <span onClick={() => setError(false)} class="closebtn">&times;</span> 
+           <strong>Error!</strong> Please try again.
+         </div>
+        )}
+
+        {success && (
+           <div class="alert-suc">
+           <span onClick={() => setSuccess(false)} class="closebtn">&times;</span> 
+           <strong>Success!</strong> You can now transfer.
+         </div>
+        )}
+   
     </div>
   )
 }
