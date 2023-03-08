@@ -21,12 +21,12 @@ const Popup = ({publicKey, setVerified, show, setShow}) => {
       setVerified(true)
       setSuccess(true)
       setError(false)
-  
+      setShow(false)
      } else {
       setVerified(false)
       setError(true)
       setSuccess(false)
-  
+      setShow(false)
      }
     } 
   }

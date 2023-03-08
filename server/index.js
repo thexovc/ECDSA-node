@@ -73,7 +73,7 @@ app.get("/verify", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port}!`);
+  console.log(`Listening on PORT ${port}!`);
 });
 
 function setInitialBalance(address) {
@@ -81,3 +81,4 @@ function setInitialBalance(address) {
     balances[address] = 0;
   }
 }
+
