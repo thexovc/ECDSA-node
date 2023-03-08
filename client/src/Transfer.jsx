@@ -1,7 +1,7 @@
 import { useState } from "react";
 import server from "./server";
 
-function Transfer({ address, setBalance }) {
+function Transfer({ address, setBalance, verified, setVerified}) {
   const [sendAmount, setSendAmount] = useState("");
   const [recipient, setRecipient] = useState("");
 
@@ -10,17 +10,23 @@ function Transfer({ address, setBalance }) {
   async function transfer(evt) {
     evt.preventDefault();
 
-    try {
-      const {
-        data: { balance },
-      } = await server.post(`send`, {
-        sender: address,
-        amount: parseInt(sendAmount),
-        recipient,
-      });
-      setBalance(balance);
-    } catch (ex) {
-      alert(ex.response.data.message);
+    if(verified){
+      try {
+        const {
+          data: { balance },
+        } = await server.post(`send`, {
+          sender: address,
+          amount: parseInt(sendAmount),
+          recipient,
+        });
+        setBalance(balance);
+        setVerified(false)
+      } catch (ex) {
+        setVerified(false)
+        alert(ex.response.data.message);
+      }
+    } else{
+      console.log("please verify")
     }
   }
 
@@ -46,7 +52,10 @@ function Transfer({ address, setBalance }) {
         ></input>
       </label>
 
-      <input type="submit" className="button" value="Transfer" />
+    {verified ?  
+     <input type="submit" className="button" value="Transfer" /> 
+    : 
+      <input type="submit" className="button-null" value="Transfer" />}
     </form>
   );
 }

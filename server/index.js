@@ -17,7 +17,11 @@ const balances = {
   "041829e229494abe23c86a1e9fd875c3d2717c566640308aa496cc38ee34afe9b1b8dd83f1a320b96a65ff3bbf4f1e67193360ae39be7cc62468dc5e6eebc2c1d6": 75,
 };
 
+let verified = false
+
+
 app.get("/balance/:address", (req, res) => {
+ 
   const { address } = req.params;
 
   // let getKey = secp.getPublicKey(address);
@@ -25,27 +29,32 @@ app.get("/balance/:address", (req, res) => {
 
   const balance = balances[address] || 0;
   res.send({ balance });
+
 });
 
 
 app.post("/send", (req, res) => {
-  const { sender, recipient, amount } = req.body;
+    const { sender, recipient, amount } = req.body;
 
-  setInitialBalance(sender);
-  setInitialBalance(recipient);
+    setInitialBalance(sender);
+    setInitialBalance(recipient);
 
-  if (balances[sender] < amount) {
-    res.status(400).send({ message: "Not enough funds!" });
-  } else {
-    balances[sender] -= amount;
-    balances[recipient] += amount;
-    res.send({ balance: balances[sender] });
-  }
+    if (balances[sender] < amount) {
+      res.status(400).send({ message: "Not enough funds!" });
+    } else {
+      balances[sender] -= amount;
+      balances[recipient] += amount;
+      res.send({ balance: balances[sender] });
+    }
+
 });
 
 
-app.get("/verify/:pass", async (req, res) => {
-  const {pass} = req.params;
+app.get("/verify", async (req, res) => {
+  console.log(req.query)
+
+  const pass = req.query.pass;
+  const user = req.query.user;
 
   let message = "Verify that you own this account";
   let byte = utf8ToBytes(message);
@@ -54,12 +63,17 @@ app.get("/verify/:pass", async (req, res) => {
   let sign = await secp.sign(hash, pass, {recovered:true});
   console.log("SIGNATURE:", sign);
 
-  let pub = secp.recoverPublicKey(hash, sign.signature, sign.recovered)
+  let pub = secp.recoverPublicKey(hash, sign[0], sign[1])
 
-  let addr = secp.verify(sign, hash,)
-  console.log(pub)
-
-  res.send({sign});
+  // let addr = secp.verify(sign, hash,)
+  if (user === toHex(pub)){
+    verified = true;
+    console.log(true)
+    res.send(true)
+  } else {
+    console.log(false)
+    res.send(false)
+  }
 
 });
 

@@ -63,6 +63,17 @@ input {
     cursor: pointer;
   }
 }
+.button-null {
+  background-color: #989c9c;
+  border-radius: 0.125rem;
+  padding: 10px 20px;
+  color: white;
+  display: inline-flex;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+  font-size: .9em;
+}
 
 .wallet {
   display: flex;

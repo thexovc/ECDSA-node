@@ -2,7 +2,7 @@ import server from "./server";
 
 import { useState } from "react"
 
-const Popup = () => {
+const Popup = ({publicKey, setVerified}) => {
 
     const [pass, setPass] = useState("")
 
@@ -11,10 +11,15 @@ const Popup = () => {
    
     if (pass != "") {
       const {
-        data: {sign},
-      } = await server.get(`verify/${pass}`);
+        data,
+      } = await server.get(`verify?pass=${pass}&user=${publicKey}`);
     
-      console.log(sign)
+     if(data){
+      setVerified(true)
+     } else {
+      alert("Not verified")
+      setVerified(false)
+     }
     } 
   }
 
