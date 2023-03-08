@@ -101,3 +101,57 @@ input {
   display: flex;
   justify-content: flex-end;
 }
+
+// .popup__con {
+//   background: rgba(0, 0, 0, 1);
+//   width: 100vw;
+//   top: 0%;
+//   left: 0%;
+//   position: fixed;
+//   opacity: 60%;
+//   height: 100vh;
+// }
+
+.popup {
+  position: fixed;
+  background-color: white;
+  padding: 40px;
+  display: flex;
+  border: #FB542B solid 1px;
+  border-radius: 12px;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 333;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.popup>label{
+  gap: 15px;
+  font-size: 24px;
+}
+
+.popup>label>input{
+  border: #FB542B solid 1px;
+}
+
+.popup>label>input:focus{
+  border-color: #FB542B;
+  outline: none;
+}
+
+.popup>label>button{
+  background-color: #319795;
+  border-radius: 0.125rem;
+  padding: 10px 20px;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+  font-size: .9em;
+  &:hover {
+    cursor: pointer;
+  }
+}

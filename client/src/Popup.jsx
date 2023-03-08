@@ -27,9 +27,11 @@ const Popup = ({publicKey, setVerified}) => {
   return (
     <div className="popup__con">
         <div className="popup">
-                <h1>Verfiy You own this account</h1>
+                <label>
+                  Verfiy you own this account
                 <input type="text" onChange={(e) => setPass(e.target.value)}/>
                 <button onClick={verify}>Verify</button>
+                </label>
         </div>
     </div>
   )
