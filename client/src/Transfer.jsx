@@ -1,7 +1,7 @@
 import { useState } from "react";
 import server from "./server";
 
-function Transfer({ address, setBalance, verified, setVerified}) {
+function Transfer({ address, setBalance, verified, setVerified, setShow}) {
   const [sendAmount, setSendAmount] = useState("");
   const [recipient, setRecipient] = useState("");
 
@@ -9,6 +9,8 @@ function Transfer({ address, setBalance, verified, setVerified}) {
 
   async function transfer(evt) {
     evt.preventDefault();
+
+    setShow(true)
 
     if(verified){
       try {

@@ -64,7 +64,7 @@ input {
   }
 }
 .button-null {
-  background-color: #989c9c;
+  background-color: #9627c9;
   border-radius: 0.125rem;
   padding: 10px 20px;
   color: white;
@@ -73,6 +73,7 @@ input {
   letter-spacing: 1px;
   font-weight: 400;
   font-size: .9em;
+  cursor: pointer;
 }
 
 .wallet {
@@ -115,12 +116,11 @@ input {
 .popup {
   position: fixed;
   background-color: white;
-  padding: 40px;
+  padding: 20px;
   display: flex;
   border: #FB542B solid 1px;
   border-radius: 12px;
   flex-direction: column;
-  gap: 10px;
   z-index: 333;
   top: 50%;
   left: 50%;
@@ -129,11 +129,16 @@ input {
 
 
 .popup>label{
-  gap: 15px;
+  gap: 20px;
+}
+
+.popup__text{
   font-size: 24px;
+  margin-bottom: 0px;
 }
 
 .popup>label>input{
+  font-size: 16px;
   border: #FB542B solid 1px;
 }
 
@@ -154,4 +159,17 @@ input {
   &:hover {
     cursor: pointer;
   }
+}
+
+.cancel{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end; 
+  color: red;
+  margin-top: -20px; 
+  font-weight: bold;
+  cursor: pointer;
+}
+.cancel>p:hover{
+  font-size: 0.7rem;
 }

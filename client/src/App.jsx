@@ -10,6 +10,7 @@ function App() {
   const [address, setAddress] = useState("");
   const [publicKey, setPublicKey] = useState("")
   const [verified, setVerified] = useState(false)
+  const [show, setShow] = useState(false)
 
   return (
     <div className="app">
@@ -24,8 +25,8 @@ function App() {
         setAddress={setAddress}
         setPublicKey={setPublicKey}
       />
-      <Transfer setBalance={setBalance} address={address}  verified={verified} setVerified={setVerified}/>
-      <Popup publicKey={publicKey} setVerified={setVerified} />
+      <Transfer setShow={setShow} setBalance={setBalance} address={address}  verified={verified} setVerified={setVerified}/>
+      <Popup show={show} setShow={setShow} publicKey={publicKey} setVerified={setVerified} />
     </div>
   );
 }

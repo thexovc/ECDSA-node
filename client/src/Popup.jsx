@@ -1,11 +1,15 @@
 import server from "./server";
 
 import { useState } from "react"
+import { useSpring, animated } from "react-spring";
 
-const Popup = ({publicKey, setVerified}) => {
+const Popup = ({publicKey, setVerified, show, setShow}) => {
 
-    const [pass, setPass] = useState("")
+  const [pass, setPass] = useState("")
 
+  // const animation = useSpring({
+  //   transform:  "translateY(0)"
+  // });
    
   async function verify() {
    
@@ -25,14 +29,20 @@ const Popup = ({publicKey, setVerified}) => {
 
 
   return (
-    <div className="popup__con">
-        <div className="popup">
-                <label>
-                  Verfiy you own this account
-                <input type="text" onChange={(e) => setPass(e.target.value)}/>
-                <button onClick={verify}>Verify</button>
-                </label>
-        </div>
+    <div className="popup__con" >
+       {show && (
+         <div
+         className="popup">
+          <div className="cancel" onClick={() => setShow(false)}>
+            <p>X</p>
+          </div>
+                 <label>
+                   <p className="popup__text">Verfiy you own this account</p>
+                 <input placeholder="private key" type="text" onChange={(e) => setPass(e.target.value)}/>
+                 <button onClick={verify}>Verify</button>
+                 </label>
+         </div>
+       )}
     </div>
   )
 }
