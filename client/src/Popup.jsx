@@ -23,7 +23,6 @@ const Popup = ({publicKey, setVerified, show, setShow}) => {
       setError(false)
   
      } else {
-      alert("Not verified")
       setVerified(false)
       setError(true)
       setSuccess(false)
