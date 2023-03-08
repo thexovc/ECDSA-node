@@ -56,7 +56,7 @@ app.get("/verify/:pass", async (req, res) => {
 
   let pub = secp.recoverPublicKey(hash, sign.signature, sign.recovered)
 
-  // let addr = secp.verify(sign, hash,)
+  let addr = secp.verify(sign, hash,)
   console.log(pub)
 
   res.send({sign});
